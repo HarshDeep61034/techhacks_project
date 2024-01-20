@@ -66,7 +66,7 @@ export default function Login({ toggle }) {
         >
           Login
         </button>
-        <div className="text-black ml-24 mt-4 cursor-pointer " onClick={toggle} >Create an account</div>
+        <div className="text-black ml-24 mt-4 cursor-pointer hover:underline " onClick={toggle} >Create an account</div>
       </div>
     </div>
   );
