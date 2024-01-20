@@ -96,7 +96,7 @@ export default function Signup({ toggle }) {
         >
           Submit
         </button>
-        <div className="text-black ml-20 mt-4 cursor-pointer" onClick={toggle} >Already have an account?</div>
+        <div className="text-black ml-20 mt-4 cursor-pointer hover:underline " onClick={toggle} >Already have an account?</div>
       </div>
     </div>
   );
