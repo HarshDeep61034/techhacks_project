@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-export default function Signup() {
+export default function Signup({ toggle }) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
@@ -96,6 +96,7 @@ export default function Signup() {
         >
           Submit
         </button>
+        <div className="text-black ml-20 mt-4 cursor-pointer hover:underline " onClick={toggle} >Already have an account?</div>
       </div>
     </div>
   );

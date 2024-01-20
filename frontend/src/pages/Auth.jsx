@@ -9,11 +9,10 @@ const Auth = () => {
   }
   return (
     <div>
-      <h1>This is Authentication Page</h1>
-      <button className="border-2 p-2 rounded-lg" onClick={toggleAuthState}>
+      {/* <button className="border-2 p-2 rounded-lg" onClick={toggleAuthState}>
         Switch to {authState === "login" ? "Signup" : "Login"}
-      </button>
-      {authState === "login" ? <Login /> : <Signup />}
+      </button> */}
+      {authState === "login" ? <Login toggle={toggleAuthState} /> : <Signup toggle={toggleAuthState} />}
     </div>
   );
 };
