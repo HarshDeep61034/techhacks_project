@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-export default function Login() {
+export default function Login({ toggle }) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
   function handleChange(e) {
@@ -66,6 +66,7 @@ export default function Login() {
         >
           Login
         </button>
+        <div className="text-black ml-24 mt-4 cursor-pointer " onClick={toggle} >Create an account</div>
       </div>
     </div>
   );
