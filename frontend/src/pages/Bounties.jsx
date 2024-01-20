@@ -53,6 +53,7 @@ const Home = () => {
                 description={bounty.description}
                 status={bounty.status}
                 createdBy={bounty.createdBy}
+                approval={false}
               />
             ))}
           </>

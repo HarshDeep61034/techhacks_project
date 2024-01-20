@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import Application from "../components/Application";
 import Apply from "../components/Apply";
+import Payment from "../components/Payment";
 
 function BountyPage() {
   const { id } = useParams();
@@ -88,7 +89,7 @@ function BountyPage() {
             </span>{" "}
             |
             <span
-              onClick={() => setContent("payments")}
+              onClick={() => setContent("Payment")}
               className="partition hover:text-gray-500 hover:underline cursor-pointer text-xl"
             >
               Payments
@@ -133,6 +134,8 @@ function BountyPage() {
               </p>
             </>
           )}
+          {content === "Payment" && <Payment bounty={bounty} />}
+
           {content === "Application" && <Application applicants={bounty} />}
         </div>
       </div>

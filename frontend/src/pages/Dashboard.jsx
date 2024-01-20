@@ -61,11 +61,13 @@ function Dashboard() {
             {bounties.map((bounty, index) => (
               <BountyComponent
                 key={index}
+                id={bounty.id}
                 title={bounty.title}
                 description={bounty.description}
                 status={bounty.status}
                 createdBy={bounty.createdBy}
                 price={bounty.price}
+                approval={true}
               />
             ))}
           </div>

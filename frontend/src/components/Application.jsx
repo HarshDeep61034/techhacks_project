@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
 
-const Application = ({ applicants }) => {
+const Application = ({ applicants, approval }) => {
   const AppliArray = applicants.Applications;
-  console.log(AppliArray);
   if (AppliArray.length === 0) return <p>No Applications yet</p>;
   else {
     return (
       <>
-        <div>
-          <h1>Hi Bro</h1>
+        <div className="bg-purple-100 p-8">
+          <h1 className="text-4xl font-bold mb-6">Applicants: </h1>
           {AppliArray.map((state, index) => (
-            <div key={index}>
-              <h2>{state.user}</h2>
-              <h3>{state.description}</h3>
+            <div key={index} className="bg-white shadow-md p-6 mb-4 rounded-md">
+              <h2 className="text-xl font-semibold mb-2">{state.user}</h2>
+              <h3 className="text-gray-600">{state.description}</h3>
+              {approval && (
+                <button className="mx-4 my-2 bg-green-600 text-white rounded-xl">
+                  Accept
+                </button>
+              )}
             </div>
           ))}
         </div>
