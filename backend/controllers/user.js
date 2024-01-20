@@ -21,7 +21,7 @@ async function handleLoginUser(req, res) {
   const passwordMatch = await bcrypt.compare(password, user.password);
   console.log(passwordMatch);
   if (passwordMatch) {
-    const accessToken = jwt.sign({ name: user.name, email, github }, secretKey);
+    const accessToken = jwt.sign({ name: user.name, email }, secretKey);
     console.log(accessToken);
     res.json({ accessToken, auth: true });
   } else {
