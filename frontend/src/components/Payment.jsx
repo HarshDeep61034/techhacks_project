@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useEffect } from "react";
-import { all } from "axios";
+import { Octokit } from "octokit";
 const Payment = ({ bounty }) => {
   const navigate = useNavigate();
   const issueLink = bounty.issueLink;
@@ -10,26 +9,25 @@ const Payment = ({ bounty }) => {
   const repo = issueLinkPart[4];
   const issueNumber = issueLinkPart[6];
   const [issues, setIssues] = useState([]);
+  const octokit = new Octokit({
+    auth: "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",
+  });
   async function checkIfMerged(owner, repo, issueNumber) {
     const apiUrl = `https://api.github.com/repos/${owner}/${repo}/issues/${issueNumber}`;
-
     try {
-      const response = await fetch(apiUrl);
-      const issueData = await response.json();
-      console.log(issueData);
-      if (issueData.state === "closed") {
-        if (issueData.pull_request) {
-          // If it's a pull request, check if it's merged
-          if (issueData.merged) {
-            console.log("The pull request has been merged.");
-          } else {
-            console.log("The pull request is closed but not merged.");
-          }
-        } else {
-          console.log("The issue is closed.");
-        }
+      const issueData = await octokit.request(apiUrl, {
+        owner: owner,
+        repo: repo,
+        headers: {
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      });
+
+      if (issueData.data.state === "closed") {
+        alert("Issue is closed");
+        navigate("/checkoutPage");
       } else {
-        console.log("The issue or pull request is still open.");
+        alert("Issue is not closed yet");
       }
     } catch (error) {
       console.error("Error fetching data from GitHub API:", error.message);
