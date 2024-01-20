@@ -20,7 +20,7 @@ function Navbar() {
               src="https://tailwindcss.com/_next/static/media/social-square.b622e290e82093c36cca57092ffe494f.jpg"
               alt=""
             />
-            Techacks
+            CoinCode
           </span>
           <span className="text-4xl cursor-pointer mx-4 md:hidden block">
             <ion-icon name="menu" onClick={toggleMenu} />
