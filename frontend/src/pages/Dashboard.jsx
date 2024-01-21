@@ -3,10 +3,20 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import BountyComponent from "../components/BountyComponent";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const [user, setUser] = useState([]);
   const [bounties, setBounties] = useState([]);
   const accessToken = Cookies.get("accessToken");
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (accessToken !== undefined) {
+      navigate("/dashboard");
+    } else {
+      navigate("/auth");
+    }
+  }, []);
   useEffect(() => {
     //user data fetch
     fetch(`http://localhost:8888/bounty/get/user`, {

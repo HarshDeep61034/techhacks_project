@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import BountyComponent from "../components/BountyComponent";
 import Cookies from "js-cookie";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [bounties, setBounties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const accessToken = Cookies.get("accessToken");
 
+  const accessToken = Cookies.get("accessToken");
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (accessToken !== undefined) {
+      navigate("/home");
+    } else {
+      navigate("/auth");
+    }
+  }, []);
   useEffect(() => {
     const fetchBounties = async () => {
       try {

@@ -1,35 +1,18 @@
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 function App() {
-  const [cookies] = useCookies(["accessToken"]);
-  const isTokenPresent = cookies.token !== undefined;
+  const accessToken = Cookies.get("accessToken");
   const navigate = useNavigate();
   useEffect(() => {
-    if (isTokenPresent) {
-      fetch("http://localhost:3000/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token: cookies.token }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.auth) {
-            navigate("/home");
-          } else {
-            navigate("/auth");
-          }
-        });
+    if (accessToken !== undefined) {
+      navigate("/home");
     } else {
       navigate("/auth");
     }
   }, []);
-  return (
-    <>{isTokenPresent ? "Tum Home Page jare ho" : "Tum Login Page Jare ho"}</>
-  );
+  return <h1>Hi</h1>;
 }
 
 export default App;

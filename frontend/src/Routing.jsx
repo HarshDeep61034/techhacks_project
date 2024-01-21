@@ -18,7 +18,7 @@ const Routing = () => {
           <Route path="/bountyCreate" element={<CreateBounty />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bountypage/:id" element={<BountyPage />} />
-          <Route path="/checkoutPage" element={<CheckoutPage />} />
+          <Route path="/checkoutPage/:price" element={<CheckoutPage />} />
         </Routes>
       </BrowserRouter>
     </div>

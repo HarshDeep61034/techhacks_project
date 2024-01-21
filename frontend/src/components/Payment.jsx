@@ -25,7 +25,7 @@ const Payment = ({ bounty }) => {
 
       if (issueData.data.state === "closed") {
         alert("Issue is closed");
-        navigate("/checkoutPage");
+        navigate(`/checkoutPage/${bounty.price}`);
       } else {
         alert("Issue is not closed yet");
       }

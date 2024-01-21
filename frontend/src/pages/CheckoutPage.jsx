@@ -1,40 +1,18 @@
-import axios from "axios";
-import {
-  CardNumberElement,
-  CardExpiryElement,
-  CardCvcElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import React from "react";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { useParams } from "react-router-dom";
 const CheckoutPage = () => {
-  const stripe = useStripe();
-  const elements = useElements();
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    const response = await axios.post(`http://localhost:8888/payment-intent`, {
-      amount: 200,
-    });
-    if (response.status === 200) {
-      const confirmPayment = await stripe.confirmCardPayment(
-        response.data.client_secret,
-        {
-          payment_method: {
-            card: elements.getElement(CardNumberElement),
-          },
-        },
-      );
-      if (confirmPayment.paymentIntent.status === "succeeded") {
-        console.log("payment confirmed");
-      }
-    }
-  };
+  const { price } = useParams();
   return (
-    <form onSubmit={handlePayment}>
-      <CardNumberElement />
-      <CardExpiryElement />
-      <CardCvcElement />
-      <button>Confirm Payment</button>
-    </form>
+    <div className="w-screen h-screen flex jutify-center items-center">
+      <div className="border border-black border-2 mx-auto rounded-lg p-10 text-[35px]">
+        <div className="flex flex-col items-center my-2">
+          <RiVerifiedBadgeFill className="text-green-600 font-bold animate-spin" />
+        </div>
+        <div className="text-center my-2">${price}</div>
+        <div className="my-2">Received Successfully</div>
+      </div>
+    </div>
   );
 };
 
